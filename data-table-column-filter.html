@@ -39,8 +39,7 @@
         filterType: String,
         dropdownItems: {
           type: Array
-        },
-        test1: String
+        }
       },
 
       _valueChanged: function(e) {
@@ -53,11 +52,12 @@
       },
 
       _isType: function(type) {
+        console.log('data-table-column-filter:', this.filterType, this.dropdownItems);
         return this.filterType === type;
       },
 
       attached: function() {
-        console.log('data-table-column-filter:', this.filterType, this.dropdownItems, this.test1);
+        //console.log('data-table-column-filter:', this.filterType, this.dropdownItems, this.test1);
       }
     });
   </script>
