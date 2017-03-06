@@ -17,14 +17,14 @@
   </style>
 
   <template>
-    <!--<template is="dom-if" if="[[type === 'text']]">
+    <template is="dom-if" if="[[filterType == 'text']]">
       <paper-input label="[[label]]" value="[[value]]" on-value-changed="_valueChanged"></paper-input>
     </template>
 
-    <template is="dom-if" if="[[type === 'dropdown']]">
+    <template is="dom-if" if="[[filterType == 'dropdown']]">
       <vaadin-combo-box label="[[label]]" items="[[dropdownItems]]"></vaadin-combo-box>
-    </template>-->
-    {{type}} - [[type]]
+    </template>
+    {{filterType}} - [[filterType]]
   </template>
   <script>
     Polymer({
@@ -37,7 +37,7 @@
           notify: true
         },
         hidden: Boolean,
-        type: String,
+        filterType: String,
         dropdownItems: {
           type: Array
         }
