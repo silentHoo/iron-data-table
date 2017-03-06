@@ -17,8 +17,8 @@
   </style>
 
   <template>
-    <paper-input label="[[label]]" value="[[value]]" on-value-changed="_valueChanged"></paper-input>
-    <vaadin-combo-box items="[[dropdownItems]]"></vaadin-combo-box>
+    <paper-input hidden$="[[type !== 'text']]" label="[[label]]" value="[[value]]" on-value-changed="_valueChanged"></paper-input>
+    <vaadin-combo-box hidden$="[[type !== 'dropdown']]" items="[[dropdownItems]]"></vaadin-combo-box>
   </template>
   <script>
     Polymer({
@@ -31,6 +31,7 @@
           notify: true
         },
         hidden: Boolean,
+        type: String,
         dropdownItems: {
           type: Array
         }
