@@ -3,7 +3,14 @@
 <dom-module id="data-table-column">
   <template>
     <template id="header">
-      <data-table-column-filter label="[[column.name]]" value="{{column.filterValue}}" hidden$="[[!column.filterBy]]"></data-table-column-filter>
+      <template is="dom-if" if="[[filterType == 'text']]">
+        <data-table-column-filter label="[[column.name]]" value="{{column.filterValue}}" hidden$="[[!column.filterBy]]"></data-table-column-filter>
+      </template>
+
+      <template is="dom-if" if="[[filterType == 'dropdown']]">
+        dropdown!
+      </template>
+
       <div hidden$="[[column.filterBy]]">[[column.name]]</div>
     </template>
   </template>
@@ -33,6 +40,14 @@
          * will be automaticelly placed on the header cell of the column.
          */
         filterBy: String,
+
+        /**
+         *
+         */
+        filterType: {
+          type: String,
+          value: 'text' // text || dropdown
+        }
 
         /**
          * Filter value that will be used to filter the items using the property defined
