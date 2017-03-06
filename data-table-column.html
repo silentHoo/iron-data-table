@@ -8,6 +8,7 @@
         value="{{column.filterValue}}" 
         filter-type="[[filterType]]" 
         dropdown-items="[[dropdownItems]]"
+        test1="[[column.filterType]]"
         hidden$="[[!column.filterBy]]">
       </data-table-column-filter>
 
@@ -214,7 +215,7 @@
       },
 
       attached: function() {
-        console.log(this.filterType, this.dropdownItems);
+        console.log('data-table-column:', this.filterType, this.dropdownItems);
       }
     });
   </script>
