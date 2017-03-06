@@ -41,16 +41,7 @@
           type: Array
         },
 
-        isTextType: {
-          type: Boolean,
-          value: false
-        },
-
-        isDropdownType: {
-          type: Boolean,
-          value: false
-        },
-
+        // virtual properties
         isText: {
           type: Boolean,
           computed: 'isOfTypeText(filterType)'
@@ -64,11 +55,6 @@
         this.debounce('value', function() {
           this.value = value;
         }.bind(this), 250);
-      },
-
-      ready: function() {
-        this.isTextType = this.filterType === 'text';
-        this.isDropdownType = this.filterType === 'dropdown';
       },
 
       isOfTypeText: function(filterType) {
