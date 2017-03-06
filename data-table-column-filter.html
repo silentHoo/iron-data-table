@@ -17,11 +17,11 @@
   </style>
 
   <template>
-    <template is="dom-if" if="{{ filterType === 'text' }}">
+    <template is="dom-if" if="[[ _isOfType('text') ]]">
       <paper-input label="[[label]]" value="[[value]]" on-value-changed="_valueChanged"></paper-input>
     </template>
 
-    <template is="dom-if" if="{{ filterType === 'dropdown' }}">
+    <template is="dom-if" if="[[ _isOfType('dropdown') ]]">
       <vaadin-combo-box label="[[label]]" items="[[dropdownItems]]"></vaadin-combo-box>
     </template>
   </template>
@@ -49,6 +49,10 @@
         this.debounce('value', function() {
           this.value = value;
         }.bind(this), 250);
+      },
+
+      _isOfType: function(type) {
+        return this.filterType === type;
       }
     });
   </script>
