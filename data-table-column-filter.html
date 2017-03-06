@@ -17,11 +17,11 @@
   </style>
 
   <template>
-    <template is="dom-if" if="{{ _isType('text') }}" restamp="true">
+    <template is="dom-if" if="{{ isTextType }}">
       <paper-input label="[[label]]" value="[[value]]" on-value-changed="_valueChanged"></paper-input>
     </template>
 
-    <template is="dom-if" if="{{ _isType('dropdown') }}" restamp="true">
+    <template is="dom-if" if="{{ isDropdownType }}">
       <vaadin-combo-box label="[[label]]" items="[[dropdownItems]]"></vaadin-combo-box>
     </template>
   </template>
@@ -39,6 +39,16 @@
         filterType: String,
         dropdownItems: {
           type: Array
+        },
+
+        isTextType: {
+          type: Boolean,
+          value: false
+        },
+
+        isDropdownType: {
+          type: Boolean,
+          value: false
         }
       },
 
@@ -51,13 +61,11 @@
         }.bind(this), 250);
       },
 
-      _isType: function(type) {
-        console.log('data-table-column-filter:', this.filterType, this.dropdownItems);
-        return this.filterType === type;
-      },
+      ready: function() {
+        console.log('data-table-column-filter:', this.filterType, this.dropdownItems, this.test1);
 
-      attached: function() {
-        //console.log('data-table-column-filter:', this.filterType, this.dropdownItems, this.test1);
+        this.isTextType = this.filterType === 'text';
+        this.isDropdownType = this.filterType === 'dropdown';
       }
     });
   </script>
