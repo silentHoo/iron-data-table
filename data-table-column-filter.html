@@ -17,11 +17,11 @@
   </style>
 
   <template>
-    <template is="dom-if" if="{{ filterType == 'text' }}">
+    <template is="dom-if" if="{{ filterType == 'text' }}" restamp="true">
       <paper-input label="[[label]]" value="[[value]]" on-value-changed="_valueChanged"></paper-input>
     </template>
 
-    <template is="dom-if" if="{{ filterType == 'dropdown' }}">
+    <template is="dom-if" if="{{ filterType == 'dropdown' }}" restamp="true">
       <vaadin-combo-box label="[[label]]" items="[[dropdownItems]]"></vaadin-combo-box>
     </template>
   </template>
