@@ -49,7 +49,10 @@
           value: 'text' // text || dropdown
         },
 
-        dropdownItems: ['A', 'B', 'C'],
+        dropdownItems: {
+          type: Array,
+          value: ['A', 'B', 'C']
+        },
 
         /**
          * Filter value that will be used to filter the items using the property defined
