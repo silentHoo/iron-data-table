@@ -17,7 +17,7 @@
   </style>
 
   <template>
-    <template is="dom-if" if="{{ isTextType }}">
+    <template is="dom-if" if="{{ filterType === 'text' }}">
       <paper-input label="[[label]]" value="[[value]]" on-value-changed="_valueChanged"></paper-input>
     </template>
 
@@ -36,7 +36,10 @@
           notify: true
         },
         hidden: Boolean,
-        filterType: String,
+        filterType: {
+          type: String,
+          value: ''
+        },
         dropdownItems: {
           type: Array
         },
