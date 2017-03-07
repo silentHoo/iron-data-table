@@ -163,8 +163,10 @@
       ],
 
       _tableChanged: function(table) {
-        console.log(table);
-        console.log('data-table-column: table changed', table.exportFilteredItems(), table.exportFilteredItems().length);
+        this.async(function() {
+          console.log(table);
+          console.log('data-table-column: table changed', table.exportFilteredItems(), table.exportFilteredItems().length);
+        }, 2000);
       },
 
       _notifyTable: function(table, path, value) {
