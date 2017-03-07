@@ -158,12 +158,13 @@
         '_orderChanged(table, order)',
         '_sortByChanged(table, sortBy)',
         '_templateChanged(table, template)',
-        '_widthChanged(table, width)'
+        '_widthChanged(table, width)',
+        '_tableItemsChanged(table.items)'
       ],
 
-      attached: function() {
-        console.log('attached!');
-        console.log(this.table, this.table.items);
+      _tableItemsChanged: function(items) {
+        console.log('_tableItemsChanged!');
+        console.log(items);
         // this.dropdownItems = 
       },
 
