@@ -611,7 +611,7 @@ inspired styles to your `iron-data-table`.
       },
 
       exportFilteredItems: function() {
-        return this._cachedItems.filter(function(x) { return !!x });
+        return this._cachedItems.filter(function(x) { return !x });
       },
 
       _toggleSelectAll: function() {
