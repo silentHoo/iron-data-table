@@ -57,10 +57,10 @@
                   '_flexChanged(flex)',
                   '_hiddenChanged(hidden)',
                   '_orderChanged(order)',
-                  '_widthChanged(width)'],
+                  '_widthChanged(width)',
+                  '_itemsChanged(items)'],
 
       attached: function() {
-        console.log(this.items)
         if (!Polymer.Settings.useNativeShadow) {
           // cell is supposed to be placed outside the local dom of iron-data-table.
           Polymer.StyleTransformer.dom(this, 'iron-data-table', this._scopeCssViaAttr, true);
@@ -68,6 +68,10 @@
             Polymer.StyleTransformer.dom(this, this.domHost.tagName.toLowerCase(), this._scopeCssViaAttr, false);
           }
         }
+      },
+
+      _itemsChanged: function(items) {
+        console.log(items)
       },
 
       _alignRightChanged: function(alignRight) {
