@@ -48,7 +48,7 @@
       },
 
       observers: [
-        '_beforeBind(beforeBind, column.*, index, item.*, items.*, expanded, selected)',
+        '_beforeBind(beforeBind, column.*, index, item.*, expanded, selected)',
         '_beforeBindHeader(beforeBind, column.*, items.*)',
         '_alignRightChanged(alignRight)',
         '_columnChanged(_instance, column)',
@@ -75,12 +75,11 @@
         this.style.flexDirection = alignRight ? 'row-reverse' : 'row';
       },
 
-      _beforeBind: function(beforeBind, column, index, item, items, expanded, selected) {
+      _beforeBind: function(beforeBind, column, index, item, expanded, selected) {
         var data = {
           column: column.base,
           index: index,
           item: item.base,
-          items: items.base,
           expanded: expanded,
           selected: selected
         };
@@ -132,11 +131,14 @@
 
       // works!
       _itemsChanged: function(instance, items) {
+        console.log('cell: _itemsChanged');
         instance.items = items;
       },
 
       // works!
       _itemsPathChanged: function(instance, items) {
+        console.log('cell: _itemsPathChanged');
+
         // sometimes instance isn't ready to be notified yet and throws an error.
         this.async(function() {
           // TODO: hack to avoid: https://github.com/Polymer/polymer/issues/3307
