@@ -34,7 +34,6 @@
         column: Object,
         flex: Number,
         header: Boolean,
-        items: Array,
         hidden: Boolean,
         order: Number,
         template: Object,
@@ -57,7 +56,8 @@
         '_flexChanged(flex)',
         '_hiddenChanged(hidden)',
         '_orderChanged(order)',
-        '_widthChanged(width)'
+        '_widthChanged(width)',
+        '_itemsChanged(items)'
       ],
 
       attached: function() {
@@ -68,6 +68,10 @@
             Polymer.StyleTransformer.dom(this, this.domHost.tagName.toLowerCase(), this._scopeCssViaAttr, false);
           }
         }
+      },
+
+      _itemsChanged: function(items) {
+        console.log('data-table-cell: items changed', items);
       },
 
       _alignRightChanged: function(alignRight) {

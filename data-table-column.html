@@ -106,7 +106,7 @@
          */
         table: Object,
 
-        item: Array,
+        items: Array,
 
         /**
          * Template for the header cell
@@ -161,11 +161,11 @@
         '_sortByChanged(table, sortBy)',
         '_templateChanged(table, template)',
         '_widthChanged(table, width)',
-        '_itemChanged(item)'
+        '_itemsChanged(items)'
       ],
 
-      _itemChanged: function(item) {
-        console.log('_itemChanged', item);
+      _itemsChanged: function(items) {
+        console.log('data-table-column: items changed', items);
       },
 
       _notifyTable: function(table, path, value) {

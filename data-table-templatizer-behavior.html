@@ -7,6 +7,7 @@
       expanded: Boolean,
       index: Number,
       item: Object,
+      items: Array,
       selected: Boolean,
       table: Object,
       template: Object,
@@ -43,6 +44,7 @@
         expanded: true,
         index: true,
         item: true,
+        items: true,
         selected: true
       };
     },
@@ -91,6 +93,17 @@
       this._parentProps = this._parentProps || {};
 
       instance.notifyPath(item.path, item.value);
+    },
+
+    _itemsChanged: function(instance, items) {
+      instance.items = items;
+    },
+
+    _itemsPathChanged: function(instance, items) {
+      // TODO: hack to avoid: https://github.com/Polymer/polymer/issues/3307
+      this._parentProps = this._parentProps || {};
+
+      instance.notifyPath(items.path, items.value);
     },
 
     _selectedChanged: function(instance, selected) {
