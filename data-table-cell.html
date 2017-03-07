@@ -48,11 +48,13 @@
       },
 
       observers: [
-        '_beforeBind(beforeBind, column.*, index, item.*, items, expanded, selected)',
-        '_beforeBindHeader(beforeBind, column.*, items)',
+        '_beforeBind(beforeBind, column.*, index, item.*, items.*, expanded, selected)',
+        '_beforeBindHeader(beforeBind, column.*, items.*)',
         '_alignRightChanged(alignRight)',
         '_columnChanged(_instance, column)',
         '_columnPathChanged(_instance, column.*)',
+        '_itemsChanged(_instance, items)',
+        '_itemsPathChanged(_instance, items.*)',
         '_flexChanged(flex)',
         '_hiddenChanged(hidden)',
         '_orderChanged(order)',
@@ -72,7 +74,7 @@
 
       // works!
       _itemsChanged: function(items) {
-        console.log('data-table-cell: items changed', items);
+        //console.log('data-table-cell: items changed', items);
       },
 
       _alignRightChanged: function(alignRight) {
@@ -84,7 +86,7 @@
           column: column.base,
           index: index,
           item: item.base,
-          items: items,
+          items: items.base,
           expanded: expanded,
           selected: selected
         };
@@ -98,7 +100,7 @@
         if (this.header) {
           var data = {
             column: column.base,
-            items: items
+            items: items.base
           };
 
           beforeBind(data, this);
@@ -131,6 +133,19 @@
           // TODO: hack to avoid: https://github.com/Polymer/polymer/issues/3307
           this._parentProps = this._parentProps || {};
           instance.notifyPath(column.path, column.value);
+        });
+      },
+
+      _itemsChanged: function(instance, items) {
+        instance.items = items;
+      },
+
+      _itemsPathChanged: function(instance, items) {
+        // sometimes instance isn't ready to be notified yet and throws an error.
+        this.async(function() {
+          // TODO: hack to avoid: https://github.com/Polymer/polymer/issues/3307
+          this._parentProps = this._parentProps || {};
+          instance.notifyPath(items.path, items.value);
         });
       }
     });
