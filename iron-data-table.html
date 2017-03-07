@@ -357,6 +357,17 @@ inspired styles to your `iron-data-table`.
         },
 
         /**
+         * This array contains the current filtered items.
+         */
+        filteredItems: {
+          type: Array,
+          notify: true,
+          computed: function() {
+            return this._cachedItems;
+          }
+        },
+
+        /**
          * When `multiSelection` is true, this is an array that contains the selected items.
          * If `selectedItems.inverted` is `true`, the array contains deselected items instead.
          * `selectedItems.filters` contains an array of filters that were active when the selection changed.
