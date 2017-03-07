@@ -49,16 +49,16 @@
       },
 
       observers: [
-                  '_beforeBind(beforeBind, column.*, index, item.*, expanded, selected)',
-                  '_beforeBindHeader(beforeBind, column.*)',
-                  '_alignRightChanged(alignRight)',
-                  '_columnChanged(_instance, column)',
-                  '_columnPathChanged(_instance, column.*)',
-                  '_flexChanged(flex)',
-                  '_hiddenChanged(hidden)',
-                  '_orderChanged(order)',
-                  '_widthChanged(width)',
-                  '_itemsChanged(items)'],
+        '_beforeBind(beforeBind, column.*, index, item.*, expanded, selected)',
+        '_beforeBindHeader(beforeBind, column.*)',
+        '_alignRightChanged(alignRight)',
+        '_columnChanged(_instance, column)',
+        '_columnPathChanged(_instance, column.*)',
+        '_flexChanged(flex)',
+        '_hiddenChanged(hidden)',
+        '_orderChanged(order)',
+        '_widthChanged(width)'
+      ],
 
       attached: function() {
         if (!Polymer.Settings.useNativeShadow) {
@@ -68,10 +68,6 @@
             Polymer.StyleTransformer.dom(this, this.domHost.tagName.toLowerCase(), this._scopeCssViaAttr, false);
           }
         }
-      },
-
-      _itemsChanged: function(items) {
-        console.log(items)
       },
 
       _alignRightChanged: function(alignRight) {

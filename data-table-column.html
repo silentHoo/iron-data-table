@@ -106,6 +106,8 @@
          */
         table: Object,
 
+        item: Array,
+
         /**
          * Template for the header cell
          */
@@ -158,8 +160,13 @@
         '_orderChanged(table, order)',
         '_sortByChanged(table, sortBy)',
         '_templateChanged(table, template)',
-        '_widthChanged(table, width)'
+        '_widthChanged(table, width)',
+        '_itemChanged(item)'
       ],
+
+      _itemChanged: function(item) {
+        console.log('_itemChanged', item);
+      },
 
       _notifyTable: function(table, path, value) {
         if (table.columns) {
