@@ -214,7 +214,8 @@
       },
 
       attached: function() {
-        console.log('data-table-column:', this.filterType, this.dropdownItems);
+        var index = this.table.columns.indexOf(this);
+        console.log(this.table.columns[index]);
       }
     });
   </script>

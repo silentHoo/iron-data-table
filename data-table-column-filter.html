@@ -14,6 +14,10 @@
         font-size: inherit;
       }
     }
+
+    vaadin-combo-box {
+      margin-bottom: 20px;
+    }
   </style>
 
   <template>
@@ -44,7 +48,7 @@
         // virtual properties
         isText: {
           type: Boolean,
-          computed: 'isOfTypeText(filterType)'
+          computed: '_isOfTypeText(filterType)'
         }
       },
 
@@ -57,7 +61,7 @@
         }.bind(this), 250);
       },
 
-      isOfTypeText: function(filterType) {
+      _isOfTypeText: function(filterType) {
         return filterType === 'text';
       }
     });
