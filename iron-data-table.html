@@ -423,6 +423,10 @@ inspired styles to your `iron-data-table`.
           notify: true
         },
 
+        processedItems: {
+          type: Array
+        },
+
         _pagesLoading: {
           type: Array,
           value: function() {
@@ -814,6 +818,7 @@ inspired styles to your `iron-data-table`.
           this._addLoadingPage(page);
 
           var success = function(items, size) {
+            this.processedItems = items;
             this.push('_cachedPages', page);
 
             if (size !== undefined) {
