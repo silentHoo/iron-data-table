@@ -58,8 +58,7 @@
         '_flexChanged(flex)',
         '_hiddenChanged(hidden)',
         '_orderChanged(order)',
-        '_widthChanged(width)',
-        '_itemsChanged(items)'
+        '_widthChanged(width)'
       ],
 
       attached: function() {
@@ -136,12 +135,11 @@
         instance.items = items;
       },
 
+      // works!
       _itemsPathChanged: function(instance, items) {
         // sometimes instance isn't ready to be notified yet and throws an error.
         this.async(function() {
           // TODO: hack to avoid: https://github.com/Polymer/polymer/issues/3307
-
-          console.log(items);
           this._parentProps = this._parentProps || {};
           instance.notifyPath(items.path, items.value);
         });
