@@ -38,7 +38,6 @@
       '_itemChanged(_instance, item)',
       '_itemPathChanged(_instance, item.*)',
       '_itemsChanged(_instance, items)',
-      '_itemsPathChanged(_instance, items.*)',
       '_selectedChanged(_instance, selected)'
     ],
 
@@ -101,13 +100,6 @@
 
     _itemsChanged: function(instance, items) {
       instance.items = items;
-    },
-
-    _itemsPathChanged: function(instance, items) {
-      // TODO: hack to avoid: https://github.com/Polymer/polymer/issues/3307
-      this._parentProps = this._parentProps || {};
-
-      instance.notifyPath(items.path, items.value);
     },
 
     _selectedChanged: function(instance, selected) {

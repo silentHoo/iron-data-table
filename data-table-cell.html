@@ -72,11 +72,6 @@
         }
       },
 
-      // works!
-      _itemsChanged: function(items) {
-        console.log('data-table-cell: items changed', items);
-      },
-
       _alignRightChanged: function(alignRight) {
         this.style.flexDirection = alignRight ? 'row-reverse' : 'row';
       },
@@ -137,6 +132,7 @@
       },
 
       _itemsChanged: function(instance, items) {
+        console.log('data-table-cell: items changed', items);
         instance.items = items;
       },
 
