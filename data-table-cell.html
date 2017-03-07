@@ -48,8 +48,8 @@
       },
 
       observers: [
-        '_beforeBind(beforeBind, column.*, index, item.*, items.*, expanded, selected)',
-        '_beforeBindHeader(beforeBind, column.*)',
+        '_beforeBind(beforeBind, column.*, index, item.*, items, expanded, selected)',
+        '_beforeBindHeader(beforeBind, column.*, items)',
         '_alignRightChanged(alignRight)',
         '_columnChanged(_instance, column)',
         '_columnPathChanged(_instance, column.*)',
@@ -70,6 +70,7 @@
         }
       },
 
+      // works!
       _itemsChanged: function(items) {
         console.log('data-table-cell: items changed', items);
       },
@@ -83,7 +84,7 @@
           column: column.base,
           index: index,
           item: item.base,
-          items: items.base,
+          items: items,
           expanded: expanded,
           selected: selected
         };
@@ -93,10 +94,11 @@
 
       // header cells aren't bound with item, index etc. so _beforeBind is never
       // called for them so we need a separate observer.
-      _beforeBindHeader: function(beforeBind, column) {
+      _beforeBindHeader: function(beforeBind, column, items) {
         if (this.header) {
           var data = {
-            column: column.base
+            column: column.base,
+            items: items
           };
 
           beforeBind(data, this);
