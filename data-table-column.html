@@ -163,8 +163,7 @@
       ],
 
       _tableChanged: function(table) {
-        var export = table.exportFilteredItems();
-        console.log('data-table-column: table changed', export, export.length);
+        console.log('data-table-column: table changed', table.exportFilteredItems(), table.exportFilteredItems().length);
       },
 
       _notifyTable: function(table, path, value) {
