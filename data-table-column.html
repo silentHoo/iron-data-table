@@ -158,14 +158,21 @@
         '_orderChanged(table, order)',
         '_sortByChanged(table, sortBy)',
         '_templateChanged(table, template)',
-        '_widthChanged(table, width)'
+        '_widthChanged(table, width)',
+        '_tableItemsChanged(table, table.items)'
       ],
+
+      _tableItemsChanged: function(table, items) {
+        console.log('changed!');
+        console.log(items);
+        console.log(table.items);
+        // this.dropdownItems = 
+      },
 
       _notifyTable: function(table, path, value) {
         if (table.columns) {
           var index = table.columns.indexOf(this);
           table.notifyPath('columns.' + index + '.' + path, value);
-          console.log(table.items);
         }
       },
 
