@@ -131,8 +131,8 @@
         });
       },
 
+      // works!
       _itemsChanged: function(instance, items) {
-        console.log('data-table-cell: items changed', items);
         instance.items = items;
       },
 
@@ -140,6 +140,8 @@
         // sometimes instance isn't ready to be notified yet and throws an error.
         this.async(function() {
           // TODO: hack to avoid: https://github.com/Polymer/polymer/issues/3307
+
+          console.log(items);
           this._parentProps = this._parentProps || {};
           instance.notifyPath(items.path, items.value);
         });
