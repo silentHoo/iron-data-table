@@ -158,17 +158,8 @@
         '_orderChanged(table, order)',
         '_sortByChanged(table, sortBy)',
         '_templateChanged(table, template)',
-        '_widthChanged(table, width)',
-        '_tableItemsChanged(table)',
-        '_tableItemsChanged(table.items)',
-        '_tableItemsChanged(table.items.*)'
+        '_widthChanged(table, width)'
       ],
-
-      _tableItemsChanged: function(asd) {
-        setTimeout(function() {
-          console.log(asd);
-        }, 1000);
-      },
 
       _notifyTable: function(table, path, value) {
         if (table.columns) {

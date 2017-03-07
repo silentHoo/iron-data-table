@@ -34,6 +34,7 @@
         column: Object,
         flex: Number,
         header: Boolean,
+        items: Array,
         hidden: Boolean,
         order: Number,
         template: Object,
@@ -59,6 +60,7 @@
                   '_widthChanged(width)'],
 
       attached: function() {
+        console.log(this.items)
         if (!Polymer.Settings.useNativeShadow) {
           // cell is supposed to be placed outside the local dom of iron-data-table.
           Polymer.StyleTransformer.dom(this, 'iron-data-table', this._scopeCssViaAttr, true);
