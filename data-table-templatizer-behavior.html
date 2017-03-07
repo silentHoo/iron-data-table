@@ -7,7 +7,10 @@
       expanded: Boolean,
       index: Number,
       item: Object,
-      items: Array,
+      items: {
+        type: Array,
+        value: []
+      },
       selected: Boolean,
       table: Object,
       template: Object,
@@ -35,6 +38,8 @@
       '_indexChanged(_instance, index)',
       '_itemChanged(_instance, item)',
       '_itemPathChanged(_instance, item.*)',
+      '_itemsChanged(_instance, items)',
+      '_itemsPathChanged(_instance, items.*)',
       '_selectedChanged(_instance, selected)'
     ],
 

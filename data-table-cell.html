@@ -48,7 +48,7 @@
       },
 
       observers: [
-        '_beforeBind(beforeBind, column.*, index, item.*, items, expanded, selected)',
+        '_beforeBind(beforeBind, column.*, index, item.*, items.*, expanded, selected)',
         '_beforeBindHeader(beforeBind, column.*)',
         '_alignRightChanged(alignRight)',
         '_columnChanged(_instance, column)',
@@ -83,7 +83,7 @@
           column: column.base,
           index: index,
           item: item.base,
-          items: items,
+          items: items.base,
           expanded: expanded,
           selected: selected
         };
