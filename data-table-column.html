@@ -158,7 +158,8 @@
         '_orderChanged(table, order)',
         '_sortByChanged(table, sortBy)',
         '_templateChanged(table, template)',
-        '_widthChanged(table, width)'
+        '_widthChanged(table, width)',
+        '_tableChanged(table)'
       ],
 
       _notifyTable: function(table, path, value) {
@@ -213,9 +214,13 @@
         this.fire('column-filter-changed', {value: filterValue, filterBy: filterBy});
       },
 
-      attached: function() {
-        var index = this.table.columns.indexOf(this);
-        console.log(this.table.columns[index]);
+      _tableChanged: function(table) {
+        console.log(table);
+
+        if (table.columns) {
+          var index = table.columns.indexOf(this);
+          console.log(table.columns[index]);
+        }
       }
     });
   </script>
