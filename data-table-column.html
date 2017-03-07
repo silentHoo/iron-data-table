@@ -106,10 +106,6 @@
          */
         table: Object,
 
-        items: {
-          type: Array
-        },
-
         /**
          * Template for the header cell
          */
@@ -163,11 +159,11 @@
         '_sortByChanged(table, sortBy)',
         '_templateChanged(table, template)',
         '_widthChanged(table, width)',
-        '_itemsChanged(items.*)'
+        '_tableChanged(table)'
       ],
 
-      _itemsChanged: function(items) {
-        console.log('data-table-column: items changed', items);
+      _tableChanged: function(table) {
+        console.log('data-table-column: table changed', table.exportFilteredItems());
       },
 
       _notifyTable: function(table, path, value) {

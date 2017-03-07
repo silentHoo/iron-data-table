@@ -610,6 +610,10 @@ inspired styles to your `iron-data-table`.
         }
       },
 
+      exportFilteredItems: function() {
+        return this._cachedItems;
+      },
+
       _toggleSelectAll: function() {
         if (this._isSelectAllChecked(this.selectedItems.length, this.selectedItems.inverted, this.size)) {
           this._fireEvent("deselecting-all-items", {items: this.selectedItems}, this.clearSelection);
@@ -729,7 +733,6 @@ inspired styles to your `iron-data-table`.
        * Lazy loading
        */
       _itemsChanged: function(items) {
-        console.log(items.length);
         if ((items.path === 'items' || items.path === 'items.splices') && Array.isArray(items.base)) {
           this.size = items.base.length;
           this.dataSource = new ArrayDataSource(items.base);
