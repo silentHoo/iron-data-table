@@ -162,8 +162,9 @@
       ],
 
       computeDropdownItems: function(distinctColumnValues, filterBy) {
-        console.log('computeDropdownItems', arguments);
-        return distinctColumnValues ? distinctColumnValues[filterBy] : [];
+        var result = (distinctColumnValues ? distinctColumnValues[filterBy] : []);
+        console.log(filterBy, result);
+        return result;
       },
 
       _notifyTable: function(table, path, value) {
