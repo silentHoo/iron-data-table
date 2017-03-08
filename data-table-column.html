@@ -103,7 +103,7 @@
 
         dropdownItems: {
           type: Array,
-          computed: 'computeDropdownItems(table, filterBy)'
+          computed: 'computeDropdownItems(table.distinctColumnValues, filterBy)'
         },
 
         /**
@@ -161,10 +161,10 @@
         '_widthChanged(table, width)'
       ],
 
-      computeDropdownItems: function(table, filterBy) {
-        if (table && table.distinctColumnValues) {
-          console.log(table.distinctColumnValues[filterBy]);
-          return table.distinctColumnValues[filterBy];
+      computeDropdownItems: function(distinctColumnValues, filterBy) {
+        if (distinctColumnValues) {
+          console.log(distinctColumnValues[filterBy]);
+          return distinctColumnValues[filterBy];
         } else {
           return [];
         }
