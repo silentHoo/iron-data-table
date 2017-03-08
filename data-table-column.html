@@ -163,8 +163,10 @@
       ],
 
       _tableChanged: function(table) {
-        this.dropdownItems = table.getColumnValuesFor(this.filterBy);
-        console.log(this.dropdownItems);
+        this.async(function() {
+          this.dropdownItems = table.getColumnValuesFor(this.filterBy);
+          console.log(this.filterBy, this.dropdownItems);
+        });
       },
 
       _notifyTable: function(table, path, value) {
