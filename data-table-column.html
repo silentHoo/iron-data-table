@@ -163,7 +163,7 @@
 
       attached: function() {
         this.async(function() {
-          this.dropdownItems = this.table.distinctColumnValues[filterBy];
+          this.dropdownItems = this.table.distinctColumnValues[this.filterBy];
         }, 2000);
       },
 
