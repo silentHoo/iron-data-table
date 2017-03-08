@@ -7,7 +7,7 @@
         label="[[column.name]]" 
         value="{{column.filterValue}}" 
         filter-type="[[filterType]]" 
-        dropdown-items="[[ dropdownItems ]]"
+        dropdown-items="[[column.dropdownItems]]"
         hidden$="[[!column.filterBy]]">
       </data-table-column-filter>
       
@@ -162,9 +162,9 @@
       ],
 
       attached: function() {
+        // wait a bit, then set dropdownItems on column property to arrive in manual stamped template
         this.async(function() {
-          this.set('dropdownItems', this.table.distinctColumnValues[this.filterBy]);
-          //console.log(this.table.distinctColumnValues[this.filterBy]);
+          this._notifyTable(table, 'dropdownItems', this.table.distinctColumnValues[this.filterBy]);
         }, 2000);
       },
 
