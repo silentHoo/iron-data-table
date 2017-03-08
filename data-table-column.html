@@ -158,8 +158,14 @@
         '_orderChanged(table, order)',
         '_sortByChanged(table, sortBy)',
         '_templateChanged(table, template)',
-        '_widthChanged(table, width)'
+        '_widthChanged(table, width)',
+        '_tableChanged(table)'
       ],
+
+      _tableChanged: function(table) {
+        this.dropdownItems = table.getColumnValuesFor(this.filterBy);
+        console.log(this.dropdownItems);
+      },
 
       _notifyTable: function(table, path, value) {
         if (table.columns) {
