@@ -164,7 +164,7 @@
       attached: function() {
         // wait a bit, then set dropdownItems on column property to arrive in manual stamped template
         this.async(function() {
-          this._notifyTable(table, 'dropdownItems', this.table.distinctColumnValues[this.filterBy]);
+          this._notifyTable(this.table, 'dropdownItems', this.table.distinctColumnValues[this.filterBy]);
         }, 2000);
       },
 
