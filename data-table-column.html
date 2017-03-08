@@ -7,10 +7,10 @@
         label="[[column.name]]" 
         value="{{column.filterValue}}" 
         filter-type="[[filterType]]" 
-        dropdown-items="[[table.distinctColumnValues[filterBy]]]"
+        dropdown-items="[[ ['A', 'B'] ]]"
         hidden$="[[!column.filterBy]]">
       </data-table-column-filter>
-      {{table.distinctColumnValues[filterBy]}}
+      {{filterBy}}
       <div hidden$="[[column.filterBy]]">[[column.name]]</div>
     </template>
   </template>
