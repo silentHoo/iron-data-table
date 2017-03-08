@@ -72,6 +72,8 @@
             Polymer.StyleTransformer.dom(this, this.domHost.tagName.toLowerCase(), this._scopeCssViaAttr, false);
           }
         }
+
+        this.fire('cell-value-changed', { column: this.column, newValue: 'yippie!!' })
       },
 
       _alignRightChanged: function(alignRight) {
