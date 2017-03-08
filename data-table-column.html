@@ -10,7 +10,7 @@
         dropdown-items="[[ dropdownItems ]]"
         hidden$="[[!column.filterBy]]">
       </data-table-column-filter>
-      {{filterBy}}
+      
       <div hidden$="[[column.filterBy]]">[[column.name]]</div>
     </template>
   </template>
@@ -29,9 +29,7 @@
 
         dropdownItems: {
           type: Array,
-          value: function() {
-            return this.table && this.table.distinctColumnValues ? table.distinctColumnValues[filterBy] : [];
-          }
+          computed: 'computeDropdownItems(table.distinctColumnValues, filterBy)'
         },
 
         /**
@@ -162,6 +160,10 @@
         '_templateChanged(table, template)',
         '_widthChanged(table, width)'
       ],
+
+      computeDropdownItems: function(distinctColumnValues, filterBy) {
+        return distinctColumnValues ? distinctColumnValues[filterBy] : [];
+      },
 
       _notifyTable: function(table, path, value) {
         if (table.columns) {
