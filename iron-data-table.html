@@ -770,8 +770,6 @@ inspired styles to your `iron-data-table`.
               this.distinctColumnValues[columnName] = _uniqSort(items.base, columnName);
             }
           }
-
-          console.log(this.distinctColumnValues);
         } else if (items.path.indexOf('items.#') === 0 && Array.isArray(items.base)) {
           var index = items.path.split('.')[1].substring(1);
           var item = this.items[index];
