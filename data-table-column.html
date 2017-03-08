@@ -30,7 +30,7 @@
         dropdownItems: {
           type: Array,
           value: function() {
-            return table && table.distinctColumnValues ? table.distinctColumnValues[filterBy] : [];
+            return this.table && this.table.distinctColumnValues ? table.distinctColumnValues[filterBy] : [];
           }
         },
 
