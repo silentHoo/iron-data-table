@@ -7,7 +7,7 @@
         label="[[column.name]]" 
         value="{{column.filterValue}}" 
         filter-type="[[filterType]]" 
-        dropdown-items="[[dropdownItems]]"
+        dropdown-items="[[table.getColumnValuesFor(filterBy)]]"
         hidden$="[[!column.filterBy]]">
       </data-table-column-filter>
 
@@ -165,7 +165,7 @@
       _tableChanged: function(table, filterBy, filterType) {
         this.async(function() {
           if (table && filterBy && filterType === 'dropdown') {
-            this.dropdownItems = table.getColumnValuesFor(filterBy);
+            //this.dropdownItems = table.getColumnValuesFor(filterBy);
             console.log(this.filterBy, this.dropdownItems);
           }
         }, 2000);
