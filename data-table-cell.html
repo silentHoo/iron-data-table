@@ -72,8 +72,6 @@
             Polymer.StyleTransformer.dom(this, this.domHost.tagName.toLowerCase(), this._scopeCssViaAttr, false);
           }
         }
-
-        this.fire('cell-value-changed', { item: this.item, newValue: 'yippie!!' })
       },
 
       _alignRightChanged: function(alignRight) {
@@ -81,6 +79,8 @@
       },
 
       _beforeBind: function(beforeBind, column, index, item, expanded, selected) {
+        this.fire('cell-value-changed', { item: item.base, newValue: 'yippie!!' })
+
         var data = {
           column: column.base,
           index: index,
