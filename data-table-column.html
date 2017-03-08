@@ -173,7 +173,7 @@
         if (!this.table || !filterBy) {
           return;
         }
-
+console.log(distinctColumnValues);
         this._notifyTable(this.table, 'dropdownItems', distinctColumnValues[filterBy]);
       },
 
