@@ -164,6 +164,7 @@
       attached: function() {
         this.async(function() {
           this.dropdownItems = this.table.distinctColumnValues[this.filterBy];
+          console.log(this.table.distinctColumnValues, this.filterBy);
         }, 2000);
       },
 
