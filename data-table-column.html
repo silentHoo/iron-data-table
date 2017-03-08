@@ -27,11 +27,6 @@
           value: false
         },
 
-        dropdownItems: {
-          type: Array,
-          computed: 'computeDropdownItems(table.distinctColumnValues, filterBy)'
-        },
-
         /**
          * Name of the column. This value is displayed in the header cell of the column
          */
@@ -106,6 +101,11 @@
          */
         table: Object,
 
+        dropdownItems: {
+          type: Array,
+          computed: 'computeDropdownItems(table, filterBy)'
+        },
+
         /**
          * Template for the header cell
          */
@@ -161,9 +161,9 @@
         '_widthChanged(table, width)'
       ],
 
-      computeDropdownItems: function(distinctColumnValues, filterBy) {
-        var result = (distinctColumnValues ? distinctColumnValues[filterBy] : []);
-        console.log(distinctColumnValues, filterBy, result);
+      computeDropdownItems: function(table, filterBy) {
+        var result = (table.distinctColumnValues ? table.distinctColumnValues[filterBy] : []);
+        console.log(table, table.distinctColumnValues, filterBy, result);
         return result;
       },
 
