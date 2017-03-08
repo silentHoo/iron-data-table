@@ -158,14 +158,23 @@
         '_orderChanged(table, order)',
         '_sortByChanged(table, sortBy)',
         '_templateChanged(table, template)',
-        '_widthChanged(table, width)'
+        '_widthChanged(table, width)',
+        '_distinctColumnValuesChanged(table.distinctColumnValues, filterBy)'
       ],
 
       attached: function() {
         // wait a bit, then set dropdownItems on column property to arrive in manual stamped template
         this.async(function() {
-          this._notifyTable(this.table, 'dropdownItems', this.table.distinctColumnValues[this.filterBy]);
+          //this._notifyTable(this.table, 'dropdownItems', this.table.distinctColumnValues[this.filterBy]);
         }, 2000);
+      },
+
+      _distinctColumnValuesChanged: function(distinctColumnValues, filterBy) {
+        if (!this.table || !filterBy) {
+          return;
+        }
+
+        this._notifyTable(this.table, 'dropdownItems', distinctColumnValues[filterBy]);
       },
 
       _notifyTable: function(table, path, value) {
