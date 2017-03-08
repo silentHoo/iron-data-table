@@ -7,7 +7,7 @@
         label="[[column.name]]" 
         value="{{column.filterValue}}" 
         filter-type="[[filterType]]" 
-        dropdown-items="[[ ['A', 'B'] ]]"
+        dropdown-items="[[ dropdownItems ]]"
         hidden$="[[!column.filterBy]]">
       </data-table-column-filter>
       {{filterBy}}
@@ -25,6 +25,13 @@
         alignRight: {
           type: Boolean,
           value: false
+        },
+
+        dropdownItems: {
+          type: Array,
+          value: function() {
+            return table && table.distinctColumnValues ? table.distinctColumnValues[filterBy] : [];
+          }
         },
 
         /**
