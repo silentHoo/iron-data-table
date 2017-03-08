@@ -79,7 +79,7 @@
       },
 
       _beforeBind: function(beforeBind, column, index, item, expanded, selected) {
-        this.fire('cell-value-changed', { item: item.base, newValue: 'yippie!!' })
+        this.fire('cell-value-changed', { item: item.base, newValue: '', column: column })
 
         var data = {
           column: column.base,
