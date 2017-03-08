@@ -7,7 +7,7 @@
         label="[[column.name]]" 
         value="{{column.filterValue}}" 
         filter-type="[[filterType]]" 
-        dropdown-items="[[table.getColumnValuesFor(filterBy)]]"
+        dropdown-items="[[table.distinctColumnValues[filterBy]]]"
         hidden$="[[!column.filterBy]]">
       </data-table-column-filter>
 
@@ -47,11 +47,6 @@
         filterType: {
           type: String,
           value: 'text' // text || dropdown
-        },
-
-        dropdownItems: {
-          type: Array,
-          value: ['A', 'B', 'C']
         },
 
         /**
@@ -158,18 +153,8 @@
         '_orderChanged(table, order)',
         '_sortByChanged(table, sortBy)',
         '_templateChanged(table, template)',
-        '_widthChanged(table, width)',
-        '_tableChanged(table, filterBy, filterType)'
+        '_widthChanged(table, width)'
       ],
-
-      _tableChanged: function(table, filterBy, filterType) {
-        this.async(function() {
-          if (table && filterBy && filterType === 'dropdown') {
-            //this.dropdownItems = table.getColumnValuesFor(filterBy);
-            console.log(this.filterBy, this.dropdownItems);
-          }
-        }, 2000);
-      },
 
       _notifyTable: function(table, path, value) {
         if (table.columns) {

@@ -628,10 +628,6 @@ inspired styles to your `iron-data-table`.
         }
       },
 
-      getColumnValuesFor: function(columnName) {
-        return this.distinctColumnValues[columnName] ? this.distinctColumnValues[columnName] : [];
-      },
-
       _toggleSelectAll: function() {
         if (this._isSelectAllChecked(this.selectedItems.length, this.selectedItems.inverted, this.size)) {
           this._fireEvent("deselecting-all-items", {items: this.selectedItems}, this.clearSelection);
