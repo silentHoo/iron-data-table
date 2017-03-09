@@ -86,8 +86,9 @@
         'change': '_sendChangeEvent'
       },
 
-      _dropdownDefaultsChanged: function(dropdownDefaultsChanged) {
-        console.log('_dropdownDefaultsChanged!!!', _dropdownDefaultsChanged);
+      _dropdownDefaultsChanged: function(instance, dropdownDefaults) {
+        console.log('_dropdownDefaultsChanged!!!', _dropdownDefaults);
+        instance.dropdownDefaults = dropdownDefaults;
       },
 
       attached: function() {
