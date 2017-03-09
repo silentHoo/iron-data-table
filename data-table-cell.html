@@ -80,7 +80,11 @@
 
       _sendChangeEvent: function(e) {
         console.log('_sendChangeEvent');
-        this.fire('cell-value-changed', { column: this.column, item: this.item, columnIndex: this.index, event: e, newValue: '...', columnName: '...' })
+        this.fire('cell-value-changed', {
+          item: this.item,
+          newValue: event.target.value, 
+          columnId: this.column.columnId
+        });
       },
 
       _alignRightChanged: function(alignRight) {
