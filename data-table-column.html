@@ -183,6 +183,7 @@
         this.async(function() {
           this._notifyTable(this.table, 'dropdownItems', this.table.distinctColumnValues[this.filterBy]);
           this._notifyTable(this.table, 'dropdownDefaults', this.table.dropdownDefaults);
+          console.log(this.table.dropdownDefaults)
         }, 5000);
         // todo: move to check for real change, does it work?
       },
