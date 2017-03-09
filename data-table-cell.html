@@ -83,12 +83,7 @@
         //
         // To have a columnId set, the user has to provide column-id in: <data-table-column column-id="the-id-to-send-back">
         //
-        'change': '_sendChangeEvent',
-        'value-changed': '_valueChanged'
-      },
-
-      _valueChanged: function(e) {
-        console.log(e);
+        'change': '_sendChangeEvent'
       },
 
       _dropdownDefaultsChanged: function(instance, dropdownDefaults) {
