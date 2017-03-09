@@ -37,7 +37,8 @@
         hidden: Boolean,
         order: Number,
         template: Object,
-        width: String
+        width: String,
+        dropdownDefaults: Object,
 
         beforeBind: {
           type: Object,
@@ -57,13 +58,13 @@
 
         '_columnChanged(_instance, column)',
         '_columnPathChanged(_instance, column.*)',
+
+        '_dropdownDefaultsChanged(_instance, dropdownDefaults)',
         
         '_flexChanged(flex)',
         '_hiddenChanged(hidden)',
         '_orderChanged(order)',
-        '_widthChanged(width)',
-
-        '_defaultsChanged(table.dropdownDefaults.*)'
+        '_widthChanged(width)'
       ],
 
       listeners: {
@@ -83,6 +84,10 @@
         // To have a columnId set, the user has to provide column-id in: <data-table-column column-id="the-id-to-send-back">
         //
         'change': '_sendChangeEvent'
+      },
+
+      _dropdownDefaultsChanged: function(dropdownDefaultsChanged) {
+        console.log('_dropdownDefaultsChanged!!!', _dropdownDefaultsChanged);
       },
 
       attached: function() {
