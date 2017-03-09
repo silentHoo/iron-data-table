@@ -102,7 +102,7 @@
 
       _sendChangeEvent: function(e) {
         // if the new value is the same as the old one, return
-        if (!this.column.columnId || this.item[this.column.columnId] === event.target.value) {
+        if (!this.column.columnId || !this.item || this.item[this.column.columnId] === event.target.value) {
           return;
         }
 
