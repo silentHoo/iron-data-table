@@ -13,6 +13,7 @@
       selected: Boolean,
       table: Object,
       template: Object,
+      dropdownDefaults: Object,
 
       //singleton
       _instances: {
@@ -39,6 +40,8 @@
       '_itemPathChanged(_instance, item.*)',
       '_itemsChanged(_instance, items)',
       '_itemsPathChanged(_instance, items.*)',
+      '_dropdownDefaultsChanged(_instance, dropdownDefaults)',
+      '_dropdownDefaultsPathChanged(_instance, dropdownDefaults.*)',
       '_selectedChanged(_instance, selected)'
     ],
 
@@ -49,6 +52,7 @@
         index: true,
         item: true,
         items: true,
+        dropdownDefaults: true,
         selected: true
       };
     },
@@ -107,6 +111,16 @@
       // TODO: hack to avoid: https://github.com/Polymer/polymer/issues/3307
       this._parentProps = this._parentProps || {};
       instance.notifyPath(items.path, items.value);
+    },
+
+    _dropdownDefaultsChanged: function(instance, dropdownDefaults) {
+      instance.dropdownDefaults = dropdownDefaults;
+    },
+
+    _dropdownDefaultsPathChanged: function(instance, dropdownDefaults) {
+      // TODO: hack to avoid: https://github.com/Polymer/polymer/issues/3307
+      this._parentProps = this._parentProps || {};
+      instance.notifyPath(dropdownDefaults.path, dropdownDefaults.value);
     },
 
     _selectedChanged: function(instance, selected) {

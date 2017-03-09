@@ -48,12 +48,15 @@
       },
 
       observers: [
-        '_beforeBind(beforeBind, column.*, index, item.*, expanded, selected)',
+        '_beforeBind(beforeBind, column.*, index, item.*, expanded, selected, dropdownDefaults)',
         '_beforeBindHeader(beforeBind, column.*, items.*)',
         '_alignRightChanged(alignRight)',
         
         '_itemsChanged(_instance, items)',
         '_itemsPathChanged(_instance, items.*)',
+
+        '_dropdownDefaultsChanged(_instance, dropdownDefaults)',
+        '_dropdownDefaultsPathChanged(_instance, dropdownDefaults.*)',
 
         '_columnChanged(_instance, column)',
         '_columnPathChanged(_instance, column.*)',
@@ -110,13 +113,14 @@
         this.style.flexDirection = alignRight ? 'row-reverse' : 'row';
       },
 
-      _beforeBind: function(beforeBind, column, index, item, expanded, selected) {
+      _beforeBind: function(beforeBind, column, index, item, expanded, selected, dropdownDefaults) {
         var data = {
           column: column.base,
           index: index,
           item: item.base,
           expanded: expanded,
-          selected: selected
+          selected: selected,
+          dropdownDefaults: dropdownDefaults
         };
 
         beforeBind(data, this);
@@ -176,6 +180,21 @@
           // TODO: hack to avoid: https://github.com/Polymer/polymer/issues/3307
           this._parentProps = this._parentProps || {};
           instance.notifyPath(items.path, items.value);
+        });
+      },
+
+      // works???
+      _dropdownDefaultsChanged: function(instance, dropdownDefaults) {
+        instance.dropdownDefaults = dropdownDefaults;
+      },
+
+      // works???
+      _dropdownDefaultsPathChanged: function(instance, dropdownDefaults) {
+        // sometimes instance isn't ready to be notified yet and throws an error.
+        this.async(function() {
+          // TODO: hack to avoid: https://github.com/Polymer/polymer/issues/3307
+          this._parentProps = this._parentProps || {};
+          instance.notifyPath(dropdownDefaults.path, dropdownDefaults.value);
         });
       }
     });
