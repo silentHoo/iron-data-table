@@ -433,6 +433,14 @@ inspired styles to your `iron-data-table`.
           value: {}
         },
 
+        /**
+         * Contains the filtered and sorted list of items.
+         */
+        filteredItems: {
+          type: Array,
+          notify: true
+        },
+
         _pagesLoading: {
           type: Array,
           value: function() {
@@ -835,6 +843,7 @@ inspired styles to your `iron-data-table`.
           this._addLoadingPage(page);
 
           var success = function(items, size) {
+            this.filteredItems = items;
             this.push('_cachedPages', page);
 
             if (size !== undefined) {
