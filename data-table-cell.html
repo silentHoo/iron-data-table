@@ -64,6 +64,10 @@
         '_widthChanged(width)'
       ],
 
+      listeners: [
+        'change': '_sendChangeEvent'
+      ],
+
       attached: function() {
         if (!Polymer.Settings.useNativeShadow) {
           // cell is supposed to be placed outside the local dom of iron-data-table.
@@ -74,13 +78,16 @@
         }
       },
 
+      _sendChangeEvent: function(e) {
+        console.log('_sendChangeEvent');
+        this.fire('cell-value-changed', { column: this.column, item: this.item, columnIndex: this.index, event: e, newValue: '...', columnName: '...' })
+      },
+
       _alignRightChanged: function(alignRight) {
         this.style.flexDirection = alignRight ? 'row-reverse' : 'row';
       },
 
       _beforeBind: function(beforeBind, column, index, item, expanded, selected) {
-        this.fire('cell-value-changed', { item: item.base, newValue: '', column: column })
-
         var data = {
           column: column.base,
           index: index,
