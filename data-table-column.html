@@ -118,6 +118,9 @@
           value: []
         },
 
+        /**
+         * Contains all values for each dropdown column.
+         */
         dropdownDefaults: {
           type: Object,
           value: {}
@@ -182,8 +185,8 @@
         // wait a bit, then set dropdownItems on column property to arrive in manual stamped template
         this.async(function() {
           this._notifyTable(this.table, 'dropdownItems', this.table.distinctColumnValues[this.filterBy]);
-          this._notifyTable(this.table, 'dropdownDefaults', this.table.dropdownDefaults);
-        }, 5000);
+          //this._notifyTable(this.table, 'dropdownDefaults', this.table.dropdownDefaults);
+        }, 2000);
       },
 
       _notifyTable: function(table, path, value) {
