@@ -94,6 +94,11 @@
       },
 
       _sendChangeEvent: function(e) {
+        // if the new value is the same as the old one, return
+        if (this.item[this.column.columnId] === event.target.value) {
+          return;
+        }
+
         this.fire('cell-value-changed', {
           oldItem: this.item,
           newValue: event.target.value, 
