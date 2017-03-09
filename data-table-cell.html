@@ -38,6 +38,7 @@
         order: Number,
         template: Object,
         width: String,
+        dropdownDefaults: Object,
 
         beforeBind: {
           type: Object,
@@ -48,15 +49,46 @@
       },
 
       observers: [
-                  '_beforeBind(beforeBind, column.*, index, item.*, expanded, selected)',
-                  '_beforeBindHeader(beforeBind, column.*)',
-                  '_alignRightChanged(alignRight)',
-                  '_columnChanged(_instance, column)',
-                  '_columnPathChanged(_instance, column.*)',
-                  '_flexChanged(flex)',
-                  '_hiddenChanged(hidden)',
-                  '_orderChanged(order)',
-                  '_widthChanged(width)'],
+        '_beforeBind(beforeBind, column.*, index, item.*, expanded, selected)',
+        '_beforeBindHeader(beforeBind, column.*, items.*)',
+        '_alignRightChanged(alignRight)',
+        
+        '_itemsChanged(_instance, items)',
+        '_itemsPathChanged(_instance, items.*)',
+
+        '_columnChanged(_instance, column)',
+        '_columnPathChanged(_instance, column.*)',
+
+        '_dropdownDefaultsChanged(_instance, dropdownDefaults)',
+        
+        '_flexChanged(flex)',
+        '_hiddenChanged(hidden)',
+        '_orderChanged(order)',
+        '_widthChanged(width)'
+      ],
+
+      listeners: {
+        // we listen here to events that are send outside of this components scope. This is used whenever someone uses
+        // a custom <template> inside the <data-table-column> and inserts there e.g. <vaadin-combo-box> or <paper-input>.
+        // Each of those components send a `change` event we catch here and fire ourself a `cell-value-changed` event,
+        // so that a consumer of the <data-table-column> can simply add a event listener for `cell-value-changed` and get
+        //
+        //   * the record of the changed item,
+        //   * the newValue of the changed cell
+        //   * the columnId which has changed
+        //
+        // So it's possible to update the record in the database or elsewhere.
+        //
+        // !!! IMPORTANT !!!
+        //
+        // To have a columnId set, the user has to provide column-id in: <data-table-column column-id="the-id-to-send-back">
+        //
+        'change': '_sendChangeEvent'
+      },
+
+      _dropdownDefaultsChanged: function(instance, dropdownDefaults) {
+        instance.dropdownDefaults = dropdownDefaults;
+      },
 
       attached: function() {
         if (!Polymer.Settings.useNativeShadow) {
@@ -66,6 +98,19 @@
             Polymer.StyleTransformer.dom(this, this.domHost.tagName.toLowerCase(), this._scopeCssViaAttr, false);
           }
         }
+      },
+
+      _sendChangeEvent: function(e) {
+        // if the new value is the same as the old one, return
+        if (!this.column.columnId || this.item[this.column.columnId] === event.target.value) {
+          return;
+        }
+
+        this.fire('cell-value-changed', {
+          oldItem: this.item,
+          newValue: event.target.value, 
+          columnId: this.column.columnId
+        });
       },
 
       _alignRightChanged: function(alignRight) {
@@ -86,10 +131,11 @@
 
       // header cells aren't bound with item, index etc. so _beforeBind is never
       // called for them so we need a separate observer.
-      _beforeBindHeader: function(beforeBind, column) {
+      _beforeBindHeader: function(beforeBind, column, items) {
         if (this.header) {
           var data = {
-            column: column.base
+            column: column.base,
+            items: items.base
           };
 
           beforeBind(data, this);
@@ -122,6 +168,19 @@
           // TODO: hack to avoid: https://github.com/Polymer/polymer/issues/3307
           this._parentProps = this._parentProps || {};
           instance.notifyPath(column.path, column.value);
+        });
+      },
+
+      _itemsChanged: function(instance, items) {
+        instance.items = items;
+      },
+
+      _itemsPathChanged: function(instance, items) {
+        // sometimes instance isn't ready to be notified yet and throws an error.
+        this.async(function() {
+          // TODO: hack to avoid: https://github.com/Polymer/polymer/issues/3307
+          this._parentProps = this._parentProps || {};
+          instance.notifyPath(items.path, items.value);
         });
       }
     });
