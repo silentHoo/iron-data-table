@@ -109,6 +109,11 @@
          */
         table: Object,
 
+        /**
+         * Contains a list of all in table existing items. This list is not complete and is created
+         * from the given `items` in <iron-data-table>. To get the full list of dropdown items for
+         * this column, grab allDropdownItems.
+         */
         dropdownItems: {
           type: Array,
           value: []
@@ -173,6 +178,7 @@
         // wait a bit, then set dropdownItems on column property to arrive in manual stamped template
         this.async(function() {
           this._notifyTable(this.table, 'dropdownItems', this.table.distinctColumnValues[this.filterBy]);
+          this._notifyTable(this.table, 'dropdownDefaults', this.table.dropdownDefaults);
         }, 2000);
       },
 

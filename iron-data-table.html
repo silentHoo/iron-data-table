@@ -301,6 +301,11 @@ inspired styles to your `iron-data-table`.
           type: Array
         },
 
+        dropdownDefaults: {
+          type: Array,
+          value: []
+        },
+
         /**
          * If `true`, tapping a row will expand the item details, if available.
          */
@@ -492,7 +497,8 @@ inspired styles to your `iron-data-table`.
         }
       },
 
-      observers: ['_itemsChanged(items.*)',
+      observers: [
+        '_itemsChanged(items.*)',
         '_currentPageChanged(dataSource, _currentPage)',
         '_resetData(dataSource, filter.*, sortOrder.*)'
       ],
