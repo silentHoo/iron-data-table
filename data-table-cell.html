@@ -38,10 +38,6 @@
         order: Number,
         template: Object,
         width: String,
-        defaults: {
-          type: Array,
-          computed: '_computedDefaults(column.dropdownDefaults)'
-        },
 
         beforeBind: {
           type: Object,
@@ -85,10 +81,6 @@
         // To have a columnId set, the user has to provide column-id in: <data-table-column column-id="the-id-to-send-back">
         //
         'change': '_sendChangeEvent'
-      },
-
-      _computedDefaults: function(dropdownDefaults) {
-        return dropdownDefaults;
       },
 
       attached: function() {
