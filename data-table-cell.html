@@ -65,6 +65,21 @@
       ],
 
       listeners: {
+        // we listen here to events that are send outside of this components scope. This is used whenever someone uses
+        // a custom <template> inside the <data-table-column> and inserts there e.g. <vaadin-combo-box> or <paper-input>.
+        // Each of those components send a `change` event we catch here and fire ourself a `cell-value-changed` event,
+        // so that a consumer of the <data-table-column> can simply add a event listener for `cell-value-changed` and get
+        //
+        //   * the record of the changed item,
+        //   * the newValue of the changed cell
+        //   * the columnId which has changed
+        //
+        // So it's possible to update the record in the database or elsewhere.
+        //
+        // !!! IMPORTANT !!!
+        //
+        // To have a columnId set, the user has to provide column-id in: <data-table-column column-id="the-id-to-send-back">
+        //
         'change': '_sendChangeEvent'
       },
 
@@ -79,7 +94,6 @@
       },
 
       _sendChangeEvent: function(e) {
-        console.log('_sendChangeEvent');
         this.fire('cell-value-changed', {
           item: this.item,
           newValue: event.target.value, 
