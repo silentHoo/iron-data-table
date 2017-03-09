@@ -184,7 +184,6 @@
           this._notifyTable(this.table, 'dropdownItems', this.table.distinctColumnValues[this.filterBy]);
           this._notifyTable(this.table, 'dropdownDefaults', this.table.dropdownDefaults);
         }, 5000);
-        // todo: move to check for real change, does it work?
       },
 
       _notifyTable: function(table, path, value) {
