@@ -14,10 +14,20 @@
         font-size: inherit;
       }
     }
+
+    vaadin-combo-box {
+      margin-bottom: 20px;
+    }
   </style>
 
   <template>
-    <paper-input label="[[label]]" value="[[value]]" on-value-changed="_valueChanged"></paper-input>
+    <template is="dom-if" if="{{ isText }}">
+      <paper-input label="[[label]]" value="[[value]]" on-value-changed="_valueChanged"></paper-input>
+    </template>
+
+    <template is="dom-if" if="{{ !isText }}">
+      <vaadin-combo-box label="[[label]]" items="[[dropdownItems]]" on-value-changed="_valueChanged"></vaadin-combo-box>
+    </template>
   </template>
   <script>
     Polymer({
@@ -29,7 +39,17 @@
           type: String,
           notify: true
         },
-        hidden: Boolean
+        hidden: Boolean,
+        filterType: String,
+        dropdownItems: {
+          type: Array
+        },
+
+        // virtual properties
+        isText: {
+          type: Boolean,
+          computed: '_isOfTypeText(filterType)'
+        }
       },
 
       _valueChanged: function(e) {
@@ -39,6 +59,10 @@
         this.debounce('value', function() {
           this.value = value;
         }.bind(this), 250);
+      },
+
+      _isOfTypeText: function(filterType) {
+        return filterType === 'text';
       }
     });
   </script>

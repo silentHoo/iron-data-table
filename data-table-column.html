@@ -3,7 +3,7 @@
 <dom-module id="data-table-column">
   <template>
     <template id="header">
-      <data-table-column-filter label="[[column.name]]" value="{{column.filterValue}}" hidden$="[[!column.filterBy]]"></data-table-column-filter>
+      <data-table-column-filter label="[[column.name]]" value="{{column.filterValue}}" filter-type="[[filterType]]" hidden$="[[!column.filterBy]]"></data-table-column-filter>
       <div hidden$="[[column.filterBy]]">[[column.name]]</div>
     </template>
   </template>
@@ -33,6 +33,14 @@
          * will be automaticelly placed on the header cell of the column.
          */
         filterBy: String,
+
+        /**
+         *
+         */
+        filterType: {
+          type: String,
+          value: 'text' // text || dropdown
+        },
 
         /**
          * Filter value that will be used to filter the items using the property defined
@@ -87,6 +95,14 @@
         table: Object,
 
         /**
+         * Contains a list of all in table existing items. This list is not complete and is created
+         * from the given `items` in <iron-data-table>.
+         */
+        dropdownItems: {
+          type: Array,
+          value: []
+        },
+
          * Template for the header cell
          */
         headerTemplate: {
@@ -140,6 +156,15 @@
         '_templateChanged(table, template)',
         '_widthChanged(table, width)'
       ],
+
+      attached: function() {
+        // wait a bit, then set dropdownItems on column property to arrive in manual stamped template
+        //
+        // @todo THIS IS A HACK, FIX IT!
+        this.async(function() {
+          this._notifyTable(this.table, 'dropdownItems', this.table.distinctColumnValues[this.filterBy]);
+        }, 2000);
+      },
 
       _notifyTable: function(table, path, value) {
         if (table.columns) {

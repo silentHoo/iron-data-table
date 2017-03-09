@@ -7,6 +7,9 @@
       expanded: Boolean,
       index: Number,
       item: Object,
+      items: {
+        type: Array
+      },
       selected: Boolean,
       table: Object,
       template: Object,
@@ -34,6 +37,8 @@
       '_indexChanged(_instance, index)',
       '_itemChanged(_instance, item)',
       '_itemPathChanged(_instance, item.*)',
+      '_itemsChanged(_instance, items)',
+      '_itemsPathChanged(_instance, items.*)',
       '_selectedChanged(_instance, selected)'
     ],
 
@@ -43,6 +48,7 @@
         expanded: true,
         index: true,
         item: true,
+        items: true,
         selected: true
       };
     },
@@ -93,11 +99,20 @@
       instance.notifyPath(item.path, item.value);
     },
 
+    _itemsChanged: function(instance, items) {
+      instance.items = items;
+    },
+
+    _itemsPathChanged: function(instance, items) {
+      // TODO: hack to avoid: https://github.com/Polymer/polymer/issues/3307
+      this._parentProps = this._parentProps || {};
+      instance.notifyPath(items.path, items.value);
+    },
+
     _selectedChanged: function(instance, selected) {
       // store original selected value to detect when value change has
       // originated from within the template.
       this._selected = selected;
-
       instance.selected = selected;
     },
 
