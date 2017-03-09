@@ -95,7 +95,7 @@
 
       _sendChangeEvent: function(e) {
         this.fire('cell-value-changed', {
-          item: this.item,
+          oldItem: this.item,
           newValue: event.target.value, 
           columnId: this.column.columnId
         });
