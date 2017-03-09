@@ -41,7 +41,7 @@
         defaults: {
           type: Object,
           value: function() {
-            return this.table.dropdownDefaults;
+            return this.table ? this.table.dropdownDefaults : { ratings: ['test']};
           }
         },
         defaults2: {
