@@ -118,6 +118,11 @@
           value: []
         },
 
+        dropdownDefaults: {
+          type: Object,
+          value: {}
+        },
+
         /**
          * Template for the header cell
          */
@@ -177,7 +182,9 @@
         // wait a bit, then set dropdownItems on column property to arrive in manual stamped template
         this.async(function() {
           this._notifyTable(this.table, 'dropdownItems', this.table.distinctColumnValues[this.filterBy]);
-        }, 2000);
+          this._notifyTable(this.table, 'dropdownDefaults', this.table.dropdownDefaults);
+        }, 5000);
+        // todo: move to check for real change, does it work?
       },
 
       _notifyTable: function(table, path, value) {
