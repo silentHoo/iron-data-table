@@ -64,9 +64,9 @@
         '_widthChanged(width)'
       ],
 
-      listeners: [
+      listeners: {
         'change': '_sendChangeEvent'
-      ],
+      },
 
       attached: function() {
         if (!Polymer.Settings.useNativeShadow) {
