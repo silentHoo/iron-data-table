@@ -102,10 +102,11 @@
 
       _sendChangeEvent: function(e) {
         // if the new value is the same as the old one, return
-        console.log(this.item, this.column.columnId, event.target.value, this.item[this.column.columnId] === event.target.value);
-        if (!this.column.columnId || !this.item || this.item[this.column.columnId] === event.target.value) {
+        if (!this.column.columnId || !this.item || this.item[this.column.columnId] == event.target.value) {
           return;
         }
+
+        console.log(this.item, this.column.columnId, event.target.value, this.item[this.column.columnId] === event.target.value);
 
         this.fire('cell-value-changed', {
           oldItem: this.item,
