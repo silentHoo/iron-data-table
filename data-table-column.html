@@ -8,7 +8,7 @@
         label="[[column.name]]" 
         value="{{column.filterValue}}" 
         filter-type="[[filterType]]" 
-        dropdown-items="[[column.dropdownItems]]"
+        dropdown-items="[[column.dropdownDefaults[column.filterBy]]]"
         hidden$="[[!column.filterBy]]">
       </data-table-column-filter>
       
@@ -108,15 +108,6 @@
          * Reference to the parent <iron-data-table> element.
          */
         table: Object,
-
-        /**
-         * Contains a list of all in table existing items. This list is not complete and is created
-         * from the given `items` in <iron-data-table>.
-         */
-        dropdownItems: {
-          type: Array,
-          value: []
-        },
 
         /**
          * Contains all values for each dropdown column.
