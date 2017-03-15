@@ -170,17 +170,19 @@
         '_sortByChanged(table, sortBy)',
         '_templateChanged(table, template)',
         '_widthChanged(table, width)',
-        '_dropdownDefaultsChanges(table, dropdownDefaults)'
+        '_dropdownDefaultsChanged(table, dropdownDefaults, filterBy)'
       ],
-
-      _dropdownDefaultsChanges: function(table, dropdownDefaults) {
-        this._notifyTable(table, 'dropdownDefaults', dropdownDefaults[this.filterBy]);
-      },
 
       _notifyTable: function(table, path, value) {
         if (table.columns) {
           var index = table.columns.indexOf(this);
           table.notifyPath('columns.' + index + '.' + path, value);
+        }
+      },
+
+      _dropdownDefaultsChanged: function(table, dropdownDefaults, filterBy) {
+        if (dropdownDefaults && filterBy && dropdownDefaults[filterBy]) {
+          this._notifyTable(table, 'dropdownDefaults', dropdownDefaults[filterBy]);
         }
       },
 
