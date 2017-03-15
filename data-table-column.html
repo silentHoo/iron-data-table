@@ -181,15 +181,6 @@
         '_widthChanged(table, width)'
       ],
 
-      attached: function() {
-        // wait a bit, then set dropdownItems on column property to arrive in manual stamped template
-        //
-        // @todo THIS IS A HACK, FIX IT!
-        this.async(function() {
-          this._notifyTable(this.table, 'dropdownItems', this.table.distinctColumnValues[this.filterBy]);
-        }, 4000);
-      },
-
       _notifyTable: function(table, path, value) {
         if (table.columns) {
           var index = table.columns.indexOf(this);
