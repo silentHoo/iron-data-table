@@ -186,6 +186,7 @@
       },
 
       _dropdownDefaultsChanged: function(table, dropdownDefaults, filterBy) {
+        console.log(dropdownDefaults, filterBy, dropdownDefaults)
         if (dropdownDefaults && filterBy && Array.isArray(dropdownDefaults[filterBy])) {
           this._notifyTable(table, 'dropdownItems', dropdownDefaults[filterBy]);
         }
