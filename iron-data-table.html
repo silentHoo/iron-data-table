@@ -171,10 +171,12 @@ inspired styles to your `iron-data-table`.
         <data-table-row header>
           <data-table-checkbox header hidden$="[[!multiSelection]]" on-tap="_toggleSelectAll" checked="[[_isSelectAllChecked(selectedItems.length, selectedItems.inverted, size)]]" indeterminate="[[_isSelectAllIndeterminate(selectedItems.length, size)]]"></data-table-checkbox>
           <template is="dom-repeat" items="[[columns]]" as="column">
+            <!--
             <data-table-cell header
                              align-right="[[column.alignRight]]"
                              before-bind="[[beforeCellBind]]"
                              column="[[column]]"
+                             dropdown-defaults="[[dropdownDefaults]]"
                              flex="[[column.flex]]"
                              hidden="[[column.hidden]]"
                              items="[[items]]"
@@ -182,6 +184,8 @@ inspired styles to your `iron-data-table`.
                              table="[[_this]]"
                              template="[[column.headerTemplate]]"
                              width="[[column.width]]">
+                             -->
+                             {{column}}
               <data-table-column-sort sort-order="[[sortOrder]]" path="[[column.sortBy]]" on-sort-direction-changed="_sortDirectionChanged" hidden$="[[!column.sortBy]]"></data-table-column-sort>
             </data-table-cell>
           </template>
