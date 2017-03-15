@@ -8,7 +8,7 @@
         label="[[column.name]]" 
         value="{{column.filterValue}}" 
         filter-type="[[filterType]]" 
-        dropdown-items="[[dropdownDefaults[filterBy]]]"
+        dropdown-items="[[column.dropdownItems]]"
         hidden$="[[!column.filterBy]]">
       </data-table-column-filter>
       
@@ -110,6 +110,15 @@
         table: Object,
 
         /**
+         * Contains a list of all in table existing items. This list is not complete and is created
+         * from the given `items` in <iron-data-table>.
+         */
+        dropdownItems: {
+          type: Array,
+          value: []
+        },
+
+        /**
          * Contains all values for each dropdown column.
          */
         dropdownDefaults: {
@@ -171,6 +180,15 @@
         '_templateChanged(table, template)',
         '_widthChanged(table, width)'
       ],
+
+      attached: function() {
+        // wait a bit, then set dropdownItems on column property to arrive in manual stamped template
+        //
+        // @todo THIS IS A HACK, FIX IT!
+        this.async(function() {
+          this._notifyTable(this.table, 'dropdownItems', this.table.distinctColumnValues[this.filterBy]);
+        }, 4000);
+      },
 
       _notifyTable: function(table, path, value) {
         if (table.columns) {
