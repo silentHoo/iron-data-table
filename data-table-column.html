@@ -8,7 +8,7 @@
         label="[[column.name]]" 
         value="{{column.filterValue}}" 
         filter-type="[[filterType]]" 
-        dropdown-items="[[column.dropdownDefaults]]"
+        dropdown-items="[[column.dropdownItems]]"
         hidden$="[[!column.filterBy]]">
       </data-table-column-filter>
       
@@ -109,6 +109,11 @@
          */
         table: Object,
 
+        dropdownItems: {
+          type: Array,
+          value: []
+        },
+
         /**
          * Contains all values for each dropdown column.
          */
@@ -181,8 +186,8 @@
       },
 
       _dropdownDefaultsChanged: function(table, dropdownDefaults, filterBy) {
-        if (dropdownDefaults && filterBy && dropdownDefaults[filterBy]) {
-          this._notifyTable(table, 'dropdownDefaults', dropdownDefaults[filterBy]);
+        if (dropdownDefaults && filterBy && Array.isArray(dropdownDefaults[filterBy])) {
+          this._notifyTable(table, 'dropdownItems', dropdownDefaults[filterBy]);
         }
       },
 
