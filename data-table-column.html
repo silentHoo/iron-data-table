@@ -179,11 +179,11 @@
         '_sortByChanged(table, sortBy)',
         '_templateChanged(table, template)',
         '_widthChanged(table, width)',
-        '_dropdownDefaultsChanged(table, table.dropdownDefaults, filterBy, filterType)'
+        '_dropdownDefaultsChanged(table, table.*, filterBy, filterType)'
       ],
 
-      _dropdownDefaultsChanged: function(table, dropdownDefaults, filterBy, filterType) {
-        console.log(table, dropdownDefaults, filterBy, filterType)
+      _dropdownDefaultsChanged: function(table, table2, filterBy, filterType) {
+        console.log(table, table2, filterBy, filterType)
         if (filterBy && filterType === 'dropdown' && table && table.dropdownDefaults) {
           this._notifyTable(table, 'dropdownItems', table.dropdownDefaults[filterBy]);
         }
