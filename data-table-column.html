@@ -183,7 +183,7 @@
       ],
 
       _dropdownDefaultsChanged: function(table, filterBy, filterType) {
-        console.log(table, filterBy, filterType);
+        console.log(table.dropdownDefaults);
         if (filterBy && filterType === 'dropdown' && table && table.dropdownDefaults) {
           this._notifyTable(table, 'dropdownItems', table.dropdownDefaults[filterBy]);
         }
