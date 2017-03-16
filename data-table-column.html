@@ -109,6 +109,10 @@
          */
         table: Object,
 
+        /**
+         * Contains a list of all in table existing items. This list is not complete and is created
+         * from the given `items` in <iron-data-table>.
+         */
         dropdownItems: {
           type: Array,
           value: []
@@ -174,27 +178,22 @@
         '_orderChanged(table, order)',
         '_sortByChanged(table, sortBy)',
         '_templateChanged(table, template)',
-        '_widthChanged(table, width)',
-        '_dropdownDefaultsChanged(table, dropdownDefaults, filterBy)'
+        '_widthChanged(table, width)'
       ],
+
+      attached: function() {
+        // wait a bit, then set dropdownItems on column property to arrive in manual stamped template
+        //
+        // @todo THIS IS A HACK, FIX IT!
+        this.async(function() {
+          this._notifyTable(this.table, 'dropdownItems', this.table.distinctColumnValues[this.filterBy]);
+        }, 4000);
+      },
 
       _notifyTable: function(table, path, value) {
         if (table.columns) {
           var index = table.columns.indexOf(this);
           table.notifyPath('columns.' + index + '.' + path, value);
-        }
-      },
-
-      attached: function() {
-        this.async(function() {
-            console.log(this.table.dropdownDefaults);
-        });
-      },
-
-      _dropdownDefaultsChanged: function(table, dropdownDefaults, filterBy) {
-        console.log(this.table.dropdownDefaults, filterBy)
-        if (this.table.dropdownDefaults && filterBy && Array.isArray(this.table.dropdownDefaults[filterBy])) {
-          this._notifyTable(table, 'dropdownItems', this.table.dropdownDefaults[filterBy]);
         }
       },
 
