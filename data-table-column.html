@@ -186,8 +186,11 @@
         //
         // @todo THIS IS A HACK, FIX IT!
         this.async(function() {
-          console.log(this.table.dropdownDefaults, this.filterBy);
-          this._notifyTable(this.table, 'dropdownItems', this.table.dropdownDefaults[this.filterBy]);
+          // only if we want to filter by this column and this columns filter is of type dropdown, we set the dropdownItems
+          if (this.filterBy && this.filterType === 'dropdown') {
+            console.log('we want to filter by "' + this.filterBy + '" and the values are: ' + this.table.dropdownDefaults[this.filterBy]);
+            this._notifyTable(this.table, 'dropdownItems', this.table.dropdownDefaults[this.filterBy]);
+          }
         }, 4000);
       },
 
