@@ -405,6 +405,11 @@ inspired styles to your `iron-data-table`.
           }
         },
 
+        sortDisabled: {
+          type: Boolean,
+          value: false
+        },
+
         /**
          * An array of `data-table-column` elements which contain the templates
          * to be stamped with items.
@@ -440,6 +445,11 @@ inspired styles to your `iron-data-table`.
         filteredItems: {
           type: Array,
           notify: true
+        },
+
+        filterDisabled: {
+          type: Boolean,
+          value: false
         },
 
         _pagesLoading: {
@@ -872,8 +882,8 @@ inspired styles to your `iron-data-table`.
           dataSource({
             page: page,
             pageSize: this.pageSize,
-            filter: this.filter,
-            sortOrder: this.sortOrder
+            filter: this.filterDisabled ? this.filter : [],      // when filtering is disabled, just give an emtpy array
+            sortOrder: this.sortDisabled ? this.sortOrder : []   // same here ...
           }, success, err);
         }
       },
