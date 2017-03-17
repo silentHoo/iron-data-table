@@ -791,7 +791,9 @@ inspired styles to your `iron-data-table`.
 
       _currentPageChanged: function(dataSource, page) {
         if (!this._isPageCached(page)) {
-          this.loading = true;
+          if (!this.filterDisabled && !this.sortDisabled) {
+            this.loading = true;
+          }
         }
 
         this.debounce('loading', function() {
@@ -811,17 +813,13 @@ inspired styles to your `iron-data-table`.
       },
 
       _addLoadingPage: function(page) {
-        // disable loading, when filtering or sorting is disabled
-        if (this.filterDisabled || this.sortDisabled) {
-          this.loading = false;
-          return;
-        }
-
         if (!this._isPageLoading(page)) {
           this.push('_pagesLoading', page);
         }
 
-        this.loading = this._pagesLoading.length > 0;
+        if (!this.filterDisabled && !this.sortDisabled) {
+          this.loading = this._pagesLoading.length > 0;
+        }
       },
 
       _removeLoadingPage: function(page) {
@@ -830,7 +828,9 @@ inspired styles to your `iron-data-table`.
           this.splice('_pagesLoading', index, 1);
         }
 
-        this.loading = this._pagesLoading.length > 0;
+        if (!this.filterDisabled && !this.sortDisabled) {
+          this.loading = this._pagesLoading.length > 0;
+        }
       },
 
       _isPageCached: function(page) {
