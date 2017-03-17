@@ -882,8 +882,8 @@ inspired styles to your `iron-data-table`.
           dataSource({
             page: page,
             pageSize: this.pageSize,
-            filter: this.filterDisabled ? this.filter : [],      // when filtering is disabled, just give an emtpy array
-            sortOrder: this.sortDisabled ? this.sortOrder : []   // same here ...
+            filter: !this.filterDisabled ? this.filter : [],      // when filtering is disabled, just give an emtpy array
+            sortOrder: !this.sortDisabled ? this.sortOrder : []   // same here ...
           }, success, err);
         }
       },
