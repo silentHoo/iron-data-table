@@ -811,6 +811,11 @@ inspired styles to your `iron-data-table`.
       },
 
       _addLoadingPage: function(page) {
+        // disable loading, when filtering or sorting is disabled
+        if (this.filterDisabled || this.sortDisabled) {
+          return;
+        }
+
         if (!this._isPageLoading(page)) {
           this.push('_pagesLoading', page);
         }
