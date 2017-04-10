@@ -199,7 +199,6 @@
 
           // set the filterValue for this column, if initialFilter provides a value for this column
           if (this.table.initialFilter[this.filterBy]) {
-            console.log(this.table.initialFilter[this.filterBy]);
             this._notifyTable(this.table, 'filterValue', this.table.initialFilter[this.filterBy]);
           }
         }, 2000);
