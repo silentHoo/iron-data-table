@@ -4,10 +4,10 @@
 <dom-module id="data-table-column">
   <template>
     <template id="header">
-      <data-table-column-filter 
-        label="[[column.name]]" 
-        value="{{column.filterValue}}" 
-        filter-type="[[filterType]]" 
+      <data-table-column-filter
+        label="[[column.name]]"
+        value="{{column.filterValue}}"
+        filter-type="[[filterType]]"
         dropdown-items="[[column.dropdownItems]]"
         hidden$="[[!column.filterBy]]">
       </data-table-column-filter>
@@ -126,6 +126,11 @@
           value: {}
         },
 
+        initialFilter: {
+          type: Object,
+          value: {}
+        },
+
         /**
          * Template for the header cell
          */
@@ -182,10 +187,20 @@
       ],
 
       attached: function() {
-        // only if we want to filter by this column and this columns filter is of type dropdown, we set the dropdownItems
         this.async(function() {
-          if (this.filterBy && this.filterType === 'dropdown') {
+          if (!this.filterBy) {
+            return;
+          }
+
+          // only if we want to filter by this colum and this columns filter is of type dropdown, we set the dropdownItems
+          if (this.filterType === 'dropdown') {
             this._notifyTable(this.table, 'dropdownItems', this.table.dropdownDefaults[this.filterBy]);
+          }
+
+          // set the filterValue for this column, if initialFilter provides a value for this column
+          if (this.table.initialFilter[this.filterBy]) {
+            console.log(this.table.initialFilter[this.filterBy]);
+            this._notifyTable(this.table, 'filterValue', this.table.initialFilter[this.filterBy]);
           }
         }, 2000);
       },

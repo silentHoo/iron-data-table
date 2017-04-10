@@ -39,6 +39,7 @@
         template: Object,
         width: String,
         dropdownDefaults: Object,
+        initialFilter: Object,
 
         beforeBind: {
           type: Object,
@@ -60,7 +61,8 @@
         '_columnPathChanged(_instance, column.*)',
 
         '_dropdownDefaultsChanged(_instance, dropdownDefaults)',
-        
+        '_initialFilterChanged(_instance, initialFilter)',
+
         '_flexChanged(flex)',
         '_hiddenChanged(hidden)',
         '_orderChanged(order)',
@@ -88,6 +90,10 @@
 
       _dropdownDefaultsChanged: function(instance, dropdownDefaults) {
         instance.dropdownDefaults = dropdownDefaults;
+      },
+
+      _initialFilterChanged: function(instance, initialFilter) {
+        instance.initialFilter = initialFilter;
       },
 
       attached: function() {
